@@ -1,8 +1,8 @@
 import React from 'react';
 
-function TableRow({ id, attributes, marks, handleMark }) {
+function TableRow({ criterion, attributes, marks, handleMark }) {
     const RadioItems = ({ item }) => {
-        let row = id - 1;
+        let row = criterion.id - 1;
         let col = item.id - 1;
         let index = row * attributes.length + col;
         return (
@@ -35,7 +35,7 @@ function TableRow({ id, attributes, marks, handleMark }) {
     ))
     return (
         <tr>
-            <th scope="row">{id}</th>
+            <th scope="row">{criterion.name}</th>
             {radioItems}
         </tr>
     );
