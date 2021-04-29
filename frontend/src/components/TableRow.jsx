@@ -9,23 +9,23 @@ function TableRow({ criterion, attributes, marks, handleMark }) {
             <td>
                 <div className="form-check">
                     <input className="form-check-input" type="radio" name={`mark${index}`} id={`mark${index}`} value={1} checked={marks[index] == 1} onChange={event => handleMark(index, event.target.value)} />
-                    <label className="form-check-label" htmlFor={`${item.name}1`}>1</label>
+                    <label className="form-check-label" htmlFor={`${item.name}1`}>Very negative (1)</label>
                 </div>
                 <div className="form-check">
                     <input className="form-check-input" type="radio" name={`mark${index}`} id={`mark${index}`} value={2} checked={marks[index] == 2} onChange={event => handleMark(index, event.target.value)} />
-                    <label className="form-check-label" htmlFor={`${item.name}2`}>2</label>
+                    <label className="form-check-label" htmlFor={`${item.name}2`}>Negative (2)</label>
                 </div>
                 <div className="form-check">
                     <input className="form-check-input" type="radio" name={`mark${index}`} id={`mark${index}`} value={3} checked={marks[index] == 3} onChange={event => handleMark(index, event.target.value)} />
-                    <label className="form-check-label" htmlFor={`${item.name}3`}>3</label>
+                    <label className="form-check-label" htmlFor={`${item.name}3`}>Average (3)</label>
                 </div>
                 <div className="form-check">
                     <input className="form-check-input" type="radio" name={`mark${index}`} id={`mark${index}`} value={4} checked={marks[index] == 4} onChange={event => handleMark(index, event.target.value)} />
-                    <label className="form-check-label" htmlFor={`${item.name}4`}>4</label>
+                    <label className="form-check-label" htmlFor={`${item.name}4`}>Positive (4)</label>
                 </div>
                 <div className="form-check">
                     <input className="form-check-input" type="radio" name={`mark${index}`} id={`mark${index}`} value={5} checked={marks[index] == 5} onChange={event => handleMark(index, event.target.value)} />
-                    <label className="form-check-label" htmlFor={`${item.name}5`}>5</label>
+                    <label className="form-check-label" htmlFor={`${item.name}5`}>Very positive (5)</label>
                 </div>
             </td>
         )
