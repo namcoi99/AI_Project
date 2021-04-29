@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import TableRow from './TableRow';
 import criteriaData from '../data/criteria.json'
 import attributes from '../data/attributes.json';
+import { Alert } from 'react-bootstrap';
 
 function FormTable({ expertNum, web }) {
     const [marks, setMarks] = useState([])
     const [name, setName] = useState('')
+    const [score, setScore] = useState(0)
     const [count, setCount] = useState(1)
+    const [show, setShow] = useState(false)
+    const [alertContent, setContent] = useState('')
 
     const handleMark = (index, value) => {
         let copyMarks = [...marks];
@@ -20,11 +24,14 @@ function FormTable({ expertNum, web }) {
         if (marks.includes(undefined) || marks.length !== criteriaData.length * attributes.length) {
             console.log(marks.length)
             console.log(criteriaData.length * attributes.length)
-            alert("Please fill all marks!!!")
+            window.scrollTo(0, 0)
+            setShow(true)
+            setContent("You must fill all the mark below.")
         } else {
             const result = {
                 name: name,
                 marks: marks,
+                score: score,
                 website: web,
                 row: criteriaData.length,
                 col: attributes.length
@@ -34,10 +41,12 @@ function FormTable({ expertNum, web }) {
             //
             //
             //
-
+            setShow(false)
             setName('')
             setMarks([])
+            setScore(0)
             alert(`Thanks expert ${name}`)
+            window.scrollTo(0, 0)
             if (count >= expertNum) {
                 alert("Evaluation completed!")
                 window.location.reload()
@@ -46,10 +55,6 @@ function FormTable({ expertNum, web }) {
             }
             console.log(result)
         }
-    }
-
-    const handleName = (event) => {
-        setName(event.target.value)
     }
 
     const generateRandArr = (event, length, max) => {
@@ -68,8 +73,14 @@ function FormTable({ expertNum, web }) {
 
     return (
         <div>
-            <button type="submit" onClick={event => generateRandArr(event, 36, 5)}>Auto fill</button>
+            <button type="submit" className="btn btn-outline-dark" onClick={event => generateRandArr(event, 36, 5)}>Auto fill</button>
             <h2 className="text-center">Website: {web}</h2>
+            <Alert show={show} variant="danger" onClose={(event) => setShow(false)} dismissible>
+                <Alert.Heading>You got an error!</Alert.Heading>
+                <p>
+                    {alertContent}
+                </p>
+            </Alert>
             <form onSubmit={handleSubmit}>
                 <table className="table table-bordered">
                     <thead>
@@ -82,11 +93,17 @@ function FormTable({ expertNum, web }) {
                         {tableRow}
                     </tbody>
                 </table>
-                <div>
-                    <label htmlFor="expertName" className="form-label">Enter your name*(Expert {count})</label>
-                    <input className="form-control" type="text" id="expertName" placeholder="Enter your name..." value={name} required onChange={handleName} />
+                <div className="row">
+                    <div className="col">
+                        <label htmlFor="expertName" className="form-label">Enter your name*(Expert {count})</label>
+                        <input className="form-control" type="text" id="expertName" placeholder="Enter your name..." value={name} required onChange={(event) => setName(event.target.value)} />
+                    </div>
+                    <div className="col">
+                        <label htmlFor="expertScore" className="form-label">Website score* (on scale of 100)</label>
+                        <input className="form-control" type="number" min="0" max="100" id="expertScore" placeholder="Enter score..." value={score} required onChange={(event) => setScore(event.target.value)} />
+                    </div>
                 </div>
-                <button type="submit" className="btn btn-primary" >Submit</button>
+                <button type="submit" className="btn btn-dark">Submit</button>
             </form>
         </div>
 
