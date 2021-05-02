@@ -7,7 +7,7 @@ import { Alert } from 'react-bootstrap';
 function FormTable({ expertNum, web }) {
     const [marks, setMarks] = useState([])
     const [name, setName] = useState('')
-    const [score, setScore] = useState(0)
+    // const [score, setScore] = useState(0)
     const [count, setCount] = useState(1)
     const [show, setShow] = useState(false)
     const [alertContent, setContent] = useState('')
@@ -31,7 +31,7 @@ function FormTable({ expertNum, web }) {
             const result = {
                 name: name,
                 marks: marks,
-                score: score,
+                // score: score,
                 website: web,
                 row: criteriaData.length,
                 col: attributes.length
@@ -44,7 +44,7 @@ function FormTable({ expertNum, web }) {
             setShow(false)
             setName('')
             setMarks([])
-            setScore(0)
+            // setScore(0)
             alert(`Thanks expert ${name}`)
             window.scrollTo(0, 0)
             if (count >= expertNum) {
@@ -98,10 +98,10 @@ function FormTable({ expertNum, web }) {
                         <label htmlFor="expertName" className="form-label">Enter your name*(Expert {count})</label>
                         <input className="form-control" type="text" id="expertName" placeholder="Enter your name..." value={name} required onChange={(event) => setName(event.target.value)} />
                     </div>
-                    <div className="col">
+                    {/* <div className="col">
                         <label htmlFor="expertScore" className="form-label">Website score* (on scale of 100)</label>
                         <input className="form-control" type="number" min="0" max="100" id="expertScore" placeholder="Enter score..." value={score} required onChange={(event) => setScore(event.target.value)} />
-                    </div>
+                    </div> */}
                 </div>
                 <button type="submit" className="btn btn-dark">Submit</button>
             </form>

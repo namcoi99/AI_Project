@@ -10,6 +10,7 @@ import {
 import Home from './containers/Home';
 import About from './containers/About';
 import DashBoard from './containers/DashBoard';
+import ScoreTable from './components/ScoreTable';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route path="/dashboard">
           <DashBoard />
+        </Route>
+        <Route path="/scoreTable">
+          <ScoreTable />
         </Route>
       </Switch>
     </Router>
