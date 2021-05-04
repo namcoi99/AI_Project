@@ -81,7 +81,7 @@ def diffCalculate(groupOrder, expertOrder, critNum , tolerableTimes):
                 
     
 #-----------------------------------------------------------
-def step1(expertsMark, selectedNum):
+def getCriteria(expertsMark, selectedNum):
    # Main
     expertsNum = expertsMark.shape[0]
     criterias = expertsMark.shape[1]
@@ -90,12 +90,7 @@ def step1(expertsMark, selectedNum):
     maxMark = 5
     tolerableTimes = 20
 
-    # random input
-    # expertsMark = np.random.randint(minMark, maxMark+1, (expertsNum, criterias, attributesNum))
     expertsOriginalWeight = np.ones(expertsNum).reshape(expertsNum, 1)
-    print("expertsMark: ", expertsMark)
-    print("\nexpertsOriginalWeightsss: ", expertsOriginalWeight)
-    print("\n")
 
     ## STEP 1:
     expertsGrade = np.empty((criterias, expertsNum))
@@ -104,17 +99,20 @@ def step1(expertsMark, selectedNum):
         expertsGrade[:, i] = grayRelationalGradeCalculate(expertsMark[i], criterias, attributesNum)
 
     groupGrade = np.dot(expertsGrade, expertsOriginalWeight)
-    #print(expertsGrade)
 
-    #print(groupGrade[:, 0])
     print("The selected criterias:\n", np.argsort(groupGrade[:,0])[-selectedNum:][::-1]+1)
 
     ## STEP 2:
     groupOrder = np.argsort(groupGrade[:,0]) #thu tu tang dan
-    expertsCurrentWeight = expertsOriginalWeight[:,0].copy();
+    expertsCurrentWeight = expertsOriginalWeight[:,0].copy()
     for i in range(expertsNum):
         expertsCurrentWeight[i]-= diffCalculate(groupOrder, np.argsort(expertsGrade[:,i]), criterias, tolerableTimes)
 
-    print("Original Weight:\n", expertsOriginalWeight[:,0])
-    print("Current Weight:\n", expertsCurrentWeight) 
-    return np.argsort(groupGrade[:,0])[-selectedNum:][::-1]+1
+    expertsCurrentWeightSum = np.sum(expertsCurrentWeight)
+    expertsCurrentWeight = expertsCurrentWeight/expertsCurrentWeightSum
+    selectedCriteria = np.argsort(groupGrade[:,0])[-selectedNum:][::-1]+1
+    criteriaWeight = np.sort(groupGrade[:, 0])[::-1]
+    criteriaWeight = criteriaWeight[selectedCriteria.argsort()]
+    selectedCriteria = np.sort(selectedCriteria)
+
+    return selectedCriteria.tolist(), expertsCurrentWeight.tolist(), criteriaWeight[:selectedNum].tolist()
