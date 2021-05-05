@@ -7,6 +7,7 @@ import step2
 app = Flask(__name__)
 
 @app.route('/get_criteria', methods=['GET'])
+@cross_origin()
 def getCriteria():
     data = request.json
     selectedCriteriaNum = data['selectedCriteriaNum']
@@ -23,6 +24,7 @@ def getCriteria():
     return response
 
 @app.route('/get_score', methods=['GET'])
+@cross_origin()
 def getScore():
     data = request.json
 
