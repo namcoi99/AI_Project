@@ -1,15 +1,16 @@
 from flask import Flask, jsonify
 from flask import request
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import numpy as np
 import step1
 import step2
 
 app = Flask(__name__)
 CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/get_criteria', methods=['GET'])
-# @cross_origin()
+@cross_origin()
 def getCriteria():
     data = request.json
     selectedCriteriaNum = data['selectedCriteriaNum']
@@ -26,7 +27,7 @@ def getCriteria():
     return response
 
 @app.route('/get_score', methods=['GET'])
-# @cross_origin()
+@cross_origin()
 def getScore():
     data = request.json
 
