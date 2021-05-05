@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask import request
 import numpy as np
 import step1
@@ -13,11 +13,14 @@ def getCriteria():
     expertsMark = np.array(data['expertsMark'])
     selectedCriteria, expertsWeight, criteriaWeight = step1.getCriteria(expertsMark, selectedCriteriaNum)
 
-    return {
+    response = jsonify({
         "selectedCriteria": selectedCriteria,
         "criteriaWeight": criteriaWeight,
         "expertsWeight": expertsWeight
-        }
+        })
+    response.headers.add("Access-Control-Allow-Origin", "*")
+
+    return response
 
 @app.route('/get_score', methods=['GET'])
 def getScore():
@@ -28,10 +31,13 @@ def getScore():
     MAS = np.array(data['userRatingScore'])
     grades = np.array(data['criteriaWeight'])
     response = step2.calculateWebScore(W, MAS, grades)
-    return {
+    response = jsonify({
         "score": response[0],
         "rank": response[1]
-    }
+    })
+    response.headers.add("Access-Control-Allow-Origin", "*")
+
+    return response
 
 
 if __name__=="__main__":
