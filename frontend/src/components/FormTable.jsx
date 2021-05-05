@@ -46,9 +46,13 @@ function FormTable({ expertNum, web }) {
         if (count >= expertNum) {
             alert("Evaluation completed!")
             // call api
-            axios.get('/get_criteria', {
+            axios.post('/get_criteria', {
                 selectedCriteriaNum: selectedCriteriaNum,
                 expertsMark: totalMarks
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
             }).then((result) => {
                 console.log(result)
             })

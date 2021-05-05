@@ -6,30 +6,37 @@ import step1
 import step2
 
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route('/get_criteria', methods=['GET'])
+@app.route('/get_criteria', methods=['POST'])
 @cross_origin()
 def getCriteria():
     data = request.json
+    print(data)
     selectedCriteriaNum = data['selectedCriteriaNum']
     expertsMark = np.array(data['expertsMark'])
-    selectedCriteria, expertsWeight, criteriaWeight = step1.getCriteria(expertsMark, selectedCriteriaNum)
+    try:
+        selectedCriteria, expertsWeight, criteriaWeight = step1.getCriteria(expertsMark, selectedCriteriaNum)
+    except:
+        return {
+            "message": "error"
+        }
+
 
     response = jsonify({
         "selectedCriteria": selectedCriteria,
         "criteriaWeight": criteriaWeight,
         "expertsWeight": expertsWeight
         })
-    response.headers.add("Access-Control-Allow-Origin", "*")
 
     return response
+    # return "123"
 
-@app.route('/get_score', methods=['GET'])
+@app.route('/get_score', methods=['POST'])
 @cross_origin()
 def getScore():
-    data = request.json
+    data = request.get_json()
 
     W = np.array(data['expertsWeight'])
     MAS = np.array([[75, 47, 75, 94, 54], [46, 75, 84, 45, 76], [65, 53, 76, 93, 54], [94, 64, 73, 83, 94], [64, 75, 36, 86, 54]])
