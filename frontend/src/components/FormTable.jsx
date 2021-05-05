@@ -3,14 +3,16 @@ import TableRow from './TableRow';
 import criteriaData from '../data/criteria.json'
 import attributes from '../data/attributes.json';
 import { Alert } from 'react-bootstrap';
+import axios from '../axios';
 
 function FormTable({ expertNum, web }) {
     const [marks, setMarks] = useState([])
     const [name, setName] = useState('')
-    // const [score, setScore] = useState(0)
+    const [totalMarks, setTotalMarks] = useState([[]])
     const [count, setCount] = useState(1)
     const [show, setShow] = useState(false)
     const [alertContent, setContent] = useState('')
+    const selectedCriteriaNum = useState(3)
 
     const handleMark = (index, value) => {
         let copyMarks = [...marks];
@@ -19,42 +21,42 @@ function FormTable({ expertNum, web }) {
         setMarks(copyMarks);
     }
 
-    const handleSubmit = (event) => {
+    const reset = () => {
+        setShow(false)
+        setName('')
+        setMarks([])
+    }
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (marks.includes(undefined) || marks.length !== criteriaData.length * attributes.length) {
-            console.log(marks.length)
-            console.log(criteriaData.length * attributes.length)
+            // console.log(marks.length)
+            // console.log(criteriaData.length * attributes.length)
             window.scrollTo(0, 0)
             setShow(true)
             setContent("You must fill all the mark below.")
-        } else {
-            const result = {
-                name: name,
-                marks: marks,
-                // score: score,
-                website: web,
-                row: criteriaData.length,
-                col: attributes.length
-            }
-
-            // call api
-            //
-            //
-            //
-            setShow(false)
-            setName('')
-            setMarks([])
-            // setScore(0)
-            alert(`Thanks expert ${name}`)
-            window.scrollTo(0, 0)
-            if (count >= expertNum) {
-                alert("Evaluation completed!")
-                window.location.reload()
-            } else {
-                setCount(count + 1)
-            }
-            console.log(result)
+            return;
         }
+        const copyTotalMarks = [...totalMarks]
+        copyTotalMarks.push(listToMatrix(marks, criteriaData.length))
+        setTotalMarks(copyTotalMarks)
+        reset()
+        alert(`Thanks expert ${name}`)
+        window.scrollTo(0, 0)
+        if (count >= expertNum) {
+            alert("Evaluation completed!")
+            // call api
+            axios.get('/get_criteria', {
+                selectedCriteriaNum: selectedCriteriaNum,
+                expertsMark: totalMarks
+            }).then((result) => {
+                console.log(result)
+            })
+            // window.location.reload()
+        } else {
+            setCount(count + 1)
+        }
+        console.log(totalMarks)
     }
 
     const generateRandArr = (event, length, max) => {
@@ -64,12 +66,31 @@ function FormTable({ expertNum, web }) {
         console.log(marks)
     }
 
-    const tableRow = criteriaData.map(criterion => (
-        <TableRow key={criterion.id} criterion={criterion} attributes={attributes} marks={marks} handleMark={handleMark} />
-    ))
-    const attrItems = attributes.map(attr => (
-        <th scope="col" key={attr.name}>{attr.name}</th>
-    ))
+    const listToMatrix = (list, elementsPerSubArray) => {
+        var matrix = [], i, k;
+
+        for (i = 0, k = -1; i < list.length; i++) {
+            if (i % elementsPerSubArray === 0) {
+                k++;
+                matrix[k] = [];
+            }
+
+            matrix[k].push(list[i]);
+        }
+
+        return matrix;
+    }
+
+    const tableRow = criteriaData.map(criterion => {
+        return (
+            <TableRow key={criterion.id} criterion={criterion} attributes={attributes} marks={marks} handleMark={handleMark} />
+        )
+    })
+    const attrItems = attributes.map(attr => {
+        return (
+            <th scope="col" key={attr.name}>{attr.name}</th>
+        )
+    })
 
     return (
         <div>
