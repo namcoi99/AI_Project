@@ -1,0 +1,55 @@
+GET http://localhost:3000/users
+
+###
+GET http://localhost:3000/users/608eae793c26bb4888864bb2
+
+###
+POST http://localhost:3000/users/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDhlZWYzOWE0NWUxNjE2ZjBmZmJkMDAiLCJpYXQiOjE2MTk5ODAxMDZ9.fqB9ylcb5z57HYTydve1BHcKYKy6iv2qhqkfKe9dQCU
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "username" : "Jane",
+    "password": "123a",
+    "email" : "jane@gmail.com"
+}
+
+###
+DELETE http://localhost:3000/users/608eee9d920e0619b89ddad1
+
+###
+PATCH http://localhost:3000/users/608ec4638b2aab2f3cf0c3c8
+Content-Type: application/json
+
+{
+    "username": "jamey",
+    "password": "123aa"
+}
+
+# ###
+
+# POST http://localhost:3000/posts
+# Content-Type: application/json
+
+# {
+#     "name" : "Jim",
+#     "title" : "Title C"
+# }
+
+###
+
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+    "username" : "jane",
+    "password" : "123a"
+}
+
+###
+POST  http://localhost:3000/users/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDhlZWYzOWE0NWUxNjE2ZjBmZmJkMDAiLCJpYXQiOjE2MTk5ODAwOTl9.9dqjbMdBhhYJvGfTjYNjVu1AcxTkxJUZi5_ZZBVZHeo
