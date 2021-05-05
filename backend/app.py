@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask import request
+from flask.ext.cors import CORS, cross_origin
 import numpy as np
 import step1
 import step2
