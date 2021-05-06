@@ -8,11 +8,11 @@ import axios from '../axios';
 function FormTable({ expertNum, web }) {
     const [marks, setMarks] = useState([])
     const [name, setName] = useState('')
-    const [totalMarks, setTotalMarks] = useState([[]])
+    const [totalMarks, setTotalMarks] = useState([])
     const [count, setCount] = useState(1)
     const [show, setShow] = useState(false)
     const [alertContent, setContent] = useState('')
-    const selectedCriteriaNum = useState(3)
+    const [selectedCriteriaNum] = useState(3)
 
     const handleMark = (index, value) => {
         let copyMarks = [...marks];
@@ -25,6 +25,28 @@ function FormTable({ expertNum, web }) {
         setShow(false)
         setName('')
         setMarks([])
+    }
+
+    const generateRandArr = (event, length, max) => {
+        event.preventDefault()
+        let randomArray = Array(length).fill().map(() => Math.ceil(Math.random() * max));
+        setMarks(randomArray)
+        console.log(marks)
+    }
+
+    const listToMatrix = (list, elementsPerSubArray) => {
+        var matrix = [], i, k;
+
+        for (i = 0, k = -1; i < list.length; i++) {
+            if (i % elementsPerSubArray === 0) {
+                k++;
+                matrix[k] = [];
+            }
+
+            matrix[k].push(list[i]);
+        }
+
+        return matrix;
     }
 
     const handleSubmit = async (event) => {
@@ -48,7 +70,7 @@ function FormTable({ expertNum, web }) {
             // call api
             axios.post('/get_criteria', {
                 selectedCriteriaNum: selectedCriteriaNum,
-                expertsMark: totalMarks
+                expertsMark: [...totalMarks, marks]
             }, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -61,28 +83,6 @@ function FormTable({ expertNum, web }) {
             setCount(count + 1)
         }
         console.log(totalMarks)
-    }
-
-    const generateRandArr = (event, length, max) => {
-        event.preventDefault()
-        let randomArray = Array(length).fill().map(() => Math.ceil(Math.random() * max));
-        setMarks(randomArray)
-        console.log(marks)
-    }
-
-    const listToMatrix = (list, elementsPerSubArray) => {
-        var matrix = [], i, k;
-
-        for (i = 0, k = -1; i < list.length; i++) {
-            if (i % elementsPerSubArray === 0) {
-                k++;
-                matrix[k] = [];
-            }
-
-            matrix[k].push(list[i]);
-        }
-
-        return matrix;
     }
 
     const tableRow = criteriaData.map(criterion => {
