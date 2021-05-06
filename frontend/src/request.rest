@@ -1,4 +1,4 @@
-GET http://localhost:5000/get_criteria
+POST http://localhost:5000/get_criteria
 Content-Type: application/json
 
 {
@@ -15,4 +15,26 @@ Content-Type: application/json
                     [2, 2, 1, 1, 4, 3, 5, 5, 4],
                     [3, 3, 3, 5, 1, 2, 2, 2, 5],
                     [4, 4, 3, 3, 2, 1, 2, 5, 5]]]
+}
+
+###
+POST  http://localhost:5000/get_score
+Content-Type: application/json
+
+{
+    "criteriaWeight": [
+    2.384322878026267,
+    2.4804351331952113,
+    2.4262633168162773
+    ],  
+    "expertsWeight": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+    ],
+    "userRatingScore": [
+        [31, 2, 3],
+        [23, 45, 56]
+    ]
+
 }

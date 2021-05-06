@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
-import FormTable from '../components/FormTable';
+import FormTable from '../components/RankingCriteria/FormTable';
+import ScoreTable from '../components/ScoringCriteria/ScoreTable';
 
 const DashBoard = () => {
     const [expertNum, setNum] = useState(0)
     const [registered, setRegistered] = useState(false)
+    const [doneRanking, setDone] = useState(false)
+    const [data, setData] = useState(undefined)
     const [web, setWeb] = useState(undefined)
 
     const handleSubmit = (event) => {
         event.preventDefault()
-
-        if (expertNum >= 0) {
+        if (expertNum > 0) {
             setRegistered(true)
         }
+    }
 
-        console.log(expertNum + web)
+    const handleData = (data) => {
+        setData(data)
+        setDone(true)
     }
 
     return (
@@ -27,8 +32,10 @@ const DashBoard = () => {
                     <input type="text" id="website" className="form-control" required placeholder="ex: hocmai.vn" onChange={(event) => setWeb(event.target.value)} />
                     <button className="btn btn-dark" type="submit">Submit</button>
                 </form>
+            ) : doneRanking === false ? (
+                <FormTable expertNum={expertNum} web={web} handleData={handleData} />
             ) : (
-                <FormTable expertNum={expertNum} web={web} />
+                <ScoreTable expertNum={expertNum} web={web} data={data} />
             )}
         </div>
     );

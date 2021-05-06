@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import TableRow from './TableRow';
-import criteriaData from '../data/criteria.json'
-import attributes from '../data/attributes.json';
+import criteriaData from '../../data/criteria.json'
+import attributes from '../../data/attributes.json';
 import { Alert } from 'react-bootstrap';
-import axios from '../axios';
+import axios from '../../axios';
 
-function FormTable({ expertNum, web }) {
+function FormTable({ expertNum, web, handleData }) {
     const [marks, setMarks] = useState([])
     const [name, setName] = useState('')
     const [totalMarks, setTotalMarks] = useState([])
@@ -31,7 +31,6 @@ function FormTable({ expertNum, web }) {
         event.preventDefault()
         let randomArray = Array(length).fill().map(() => Math.ceil(Math.random() * max));
         setMarks(randomArray)
-        console.log(marks)
     }
 
     const listToMatrix = (list, elementsPerSubArray) => {
@@ -52,8 +51,6 @@ function FormTable({ expertNum, web }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (marks.includes(undefined) || marks.length !== criteriaData.length * attributes.length) {
-            // console.log(marks.length)
-            // console.log(criteriaData.length * attributes.length)
             window.scrollTo(0, 0)
             setShow(true)
             setContent("You must fill all the mark below.")
@@ -70,19 +67,18 @@ function FormTable({ expertNum, web }) {
             // call api
             axios.post('/get_criteria', {
                 selectedCriteriaNum: selectedCriteriaNum,
-                expertsMark: [...totalMarks, marks]
+                expertsMark: [...totalMarks,listToMatrix(marks,criteriaData.length)]
             }, {
                 headers: {
                     'Content-Type': 'application/json',
                 }
-            }).then((result) => {
-                console.log(result)
+            }).then((res) => {
+                console.log(res.data)
+                handleData(res.data)
             })
-            // window.location.reload()
         } else {
             setCount(count + 1)
         }
-        console.log(totalMarks)
     }
 
     const tableRow = criteriaData.map(criterion => {
@@ -98,7 +94,7 @@ function FormTable({ expertNum, web }) {
 
     return (
         <div>
-            <button type="submit" className="btn btn-outline-dark" onClick={event => generateRandArr(event, 36, 5)}>Auto fill</button>
+            <button type="button" className="btn btn-outline-dark" onClick={event => generateRandArr(event, 36, 5)}>Auto fill</button>
             <h2 className="text-center">Website: {web}</h2>
             <Alert show={show} variant="danger" onClose={(event) => setShow(false)} dismissible>
                 <Alert.Heading>You got an error!</Alert.Heading>
@@ -123,10 +119,6 @@ function FormTable({ expertNum, web }) {
                         <label htmlFor="expertName" className="form-label">Enter your name*(Expert {count})</label>
                         <input className="form-control" type="text" id="expertName" placeholder="Enter your name..." value={name} required onChange={(event) => setName(event.target.value)} />
                     </div>
-                    {/* <div className="col">
-                        <label htmlFor="expertScore" className="form-label">Website score* (on scale of 100)</label>
-                        <input className="form-control" type="number" min="0" max="100" id="expertScore" placeholder="Enter score..." value={score} required onChange={(event) => setScore(event.target.value)} />
-                    </div> */}
                 </div>
                 <button type="submit" className="btn btn-dark">Submit</button>
             </form>

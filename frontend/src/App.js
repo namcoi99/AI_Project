@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './App.css';
-import FormTable from './components/FormTable';
 import Navbar from './components/Navbar';
 import {
   BrowserRouter as Router,
@@ -10,7 +9,7 @@ import {
 import Home from './containers/Home';
 import About from './containers/About';
 import DashBoard from './containers/DashBoard';
-import ScoreTable from './components/ScoreTable';
+import ScoreTable from './components/ScoringCriteria/ScoreTable';
 
 function App() {
   return (
