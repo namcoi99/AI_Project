@@ -42,12 +42,17 @@ def getScore():
     MAS = np.array([[75, 47, 75, 94, 54], [46, 75, 84, 45, 76], [65, 53, 76, 93, 54], [94, 64, 73, 83, 94], [64, 75, 36, 86, 54]])
     MAS = np.array(data['userRatingScore'])
     grades = np.array(data['criteriaWeight'])
-    response = step2.calculateWebScore(W, MAS, grades)
+    try:
+        response = step2.calculateWebScore(W, MAS, grades)
+    except:
+        return {
+            "message": "error"
+        }
     response = jsonify({
         "score": response[0],
         "rank": response[1]
     })
-    response.headers.add("Access-Control-Allow-Origin", "*")
+    # response.headers.add("Access-Control-Allow-Origin", "*")
 
     return response
 
