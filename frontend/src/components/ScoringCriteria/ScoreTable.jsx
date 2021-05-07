@@ -3,7 +3,7 @@ import criteriaData from '../../data/criteria.json'
 import ScoreRow from './ScoreRow';
 import axios from '../../axios';
 
-const ScoreTable = ({ expertNum, web, data }) => {
+const ScoreTable = ({ expertNum, web, data, handleData }) => {
     const [score, setScore] = useState(new Array(data.selectedCriteria.length).fill(0))
     const [scores, setScores] = useState([])
     const [count, setCount] = useState(1)
@@ -43,7 +43,7 @@ const ScoreTable = ({ expertNum, web, data }) => {
                 }
             }).then((res) => {
                 console.log(res.data)
-                // handleData(res.data)
+                handleData(res.data)
             })
         } else {
             setCount(count + 1)

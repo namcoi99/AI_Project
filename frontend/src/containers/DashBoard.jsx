@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import FormTable from '../components/RankingCriteria/FormTable';
+import Result from '../components/Result';
 import ScoreTable from '../components/ScoringCriteria/ScoreTable';
 
 const DashBoard = () => {
     const [expertNum, setNum] = useState(0)
     const [registered, setRegistered] = useState(false)
-    const [doneRanking, setDone] = useState(false)
-    const [data, setData] = useState(undefined)
+    const [doneRanking, setDoneRank] = useState(false)
+    const [doneScoring, setDoneScore] = useState(false)
+    const [data1, setData1] = useState(undefined)
+    const [data2, setData2] = useState(undefined)
     const [web, setWeb] = useState(undefined)
 
     const handleSubmit = (event) => {
@@ -16,9 +19,14 @@ const DashBoard = () => {
         }
     }
 
-    const handleData = (data) => {
-        setData(data)
-        setDone(true)
+    const handleRankedCriteria = (data) => {
+        setData1(data)
+        setDoneRank(true)
+    }
+
+    const handleRankedWeb = (data) => {
+        setData2(data)
+        setDoneScore(true)
     }
 
     return (
@@ -33,10 +41,10 @@ const DashBoard = () => {
                     <button className="btn btn-dark" type="submit">Submit</button>
                 </form>
             ) : doneRanking === false ? (
-                <FormTable expertNum={expertNum} web={web} handleData={handleData} />
-            ) : (
-                <ScoreTable expertNum={expertNum} web={web} data={data} />
-            )}
+                <FormTable expertNum={expertNum} web={web} handleData={handleRankedCriteria} />
+            ) : doneScoring === false ? (
+                <ScoreTable expertNum={expertNum} web={web} data={data1} handleData={handleRankedWeb} />
+            ) : <Result web={web} data={data2} />}
         </div>
     );
 };
