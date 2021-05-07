@@ -17,8 +17,12 @@ const ScoreTable = ({ expertNum, web, data, handleData }) => {
     const handleScore = (event, index, value) => {
         event.preventDefault()
         let copyScore = [...score];
-        copyScore[index] = value;
-        console.log(index + ": " + value)
+        var newValue
+        if (typeof value === 'string') {
+            newValue = parseInt(value)
+        }
+        copyScore[index] = newValue;
+        console.log(index + ": " + newValue)
         setScore(copyScore);
     }
 

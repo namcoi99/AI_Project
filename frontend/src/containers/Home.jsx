@@ -39,25 +39,25 @@ const Home = () => {
             <h2 className="mx-auto" style={{ textAlign: "center", padding: "50px" }}>Top educational websites</h2>
             <div className="card-group">
                 <div className="card">
-                    <img src="..." className="card-img-top" alt="..." />
+                    <img src="https://s3.amazonaws.com/coursera/media/Grid_Coursera_Partners_updated.png" className="card-img-top" alt="coursera" />
                     <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
+                        <h5 className="card-title">Coursera.org</h5>
                         <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                 </div>
                 <div className="card">
-                    <img src="..." className="card-img-top" alt="..." />
+                    <img src="https://www.classcentral.com/report/wp-content/uploads/2021/01/udemy-top-courses.png" className="card-img-top" alt="udemy" />
                     <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
+                        <h5 className="card-title">Udemy.com</h5>
                         <p className="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
                         <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                 </div>
                 <div className="card">
-                    <img src="..." className="card-img-top" alt="..." />
+                    <img src="https://edx.edu.vn/wp-content/uploads/2020/02/Muc-tieu-giao-duc-cua-edX-1.jpg" className="card-img-top" alt="edx" />
                     <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
+                        <h5 className="card-title">Edx.org</h5>
                         <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
                         <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                     </div>
