@@ -35,7 +35,11 @@ function TableRow({ criterion, attributes, marks, handleMark }) {
     ))
     return (
         <tr>
-            <th scope="row">{criterion.name}</th>
+            <td scope="row">
+                <div className="text-wrap" style={{ width: '20rem' }}>
+                    {criterion.description}
+                </div>
+            </td>
             {radioItems}
         </tr>
     );

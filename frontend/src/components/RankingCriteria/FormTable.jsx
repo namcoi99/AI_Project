@@ -5,7 +5,7 @@ import attributes from '../../data/attributes.json';
 import { Alert } from 'react-bootstrap';
 import axios from '../../axios';
 
-function FormTable({ expertNum, web, handleData }) {
+function FormTable({ nextStep, prevStep, expertNum, web, handleData, setLoading }) {
     const [marks, setMarks] = useState([])
     const [name, setName] = useState('')
     const [totalMarks, setTotalMarks] = useState([])
@@ -65,17 +65,23 @@ function FormTable({ expertNum, web, handleData }) {
         if (count >= expertNum) {
             alert("Evaluation completed!")
             // call api
-            axios.post('/get_criteria', {
-                selectedCriteriaNum: selectedCriteriaNum,
-                expertsMark: [...totalMarks,listToMatrix(marks,criteriaData.length)]
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            }).then((res) => {
-                console.log(res.data)
-                handleData(res.data)
-            })
+            try {
+                setLoading(true)
+                await axios.post('/get_criteria', {
+                    selectedCriteriaNum: selectedCriteriaNum,
+                    expertsMark: [...totalMarks, listToMatrix(marks, criteriaData.length)]
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }).then((res) => {
+                    console.log(res.data)
+                    handleData(res.data)
+                    nextStep()
+                })
+            } catch (e) {
+                console.log(e)
+            }
         } else {
             setCount(count + 1)
         }
@@ -120,7 +126,8 @@ function FormTable({ expertNum, web, handleData }) {
                         <input className="form-control" type="text" id="expertName" placeholder="Enter your name..." value={name} required onChange={(event) => setName(event.target.value)} />
                     </div>
                 </div>
-                <button type="submit" className="btn btn-dark">Submit</button>
+                <button type="button" className="btn btn-outline-dark" onClick={prevStep}>Back</button>
+                <button type="submit" className="btn btn-dark">Next</button>
             </form>
         </div>
 

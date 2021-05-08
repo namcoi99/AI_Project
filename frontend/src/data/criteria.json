@@ -2,7 +2,7 @@
     {
         "id": 1,
         "name": "Khám phá sự thật và phát triển kiến thức",
-        "description": "ICT cho phép học sinh khám phá nhiều hơn thế giới thực, sử dụng các công cụ và các thông tin cập nhật để xây dựng một nền tảng kiến thức sâu và rộng",
+        "description": "ICT cho phép học sinh khám phá nhiều hơn thế giới thực, sử dụng các công cụ và các thông tin cập nhật để xây dựng một nền tảng kiến thức sâu và rộng.",
         "explanatory": "Học sinh có thể tiếp cận nhiều nguồn thông tin sử dụng các kho dữ liệu thông tin, các hệ thống online, và các hệ thống truy cập thông tin. Học sinh sau đó có thể sử dụng các công cụ ICT để phân tích, diễn giải thông tin, nhận các phản hồi của chuyên gia, chính xác hóa sự hiểu biết, xây dựng kiến thức mới và chuyển tải kiến thức từ môi trường học tập ra bên ngoài.",
         "example": "Học sinh sử dụng các phần mềm soạn thảo văn bản, tính toán, các phần mềm đồ họa để thu thập, phân tích thông tin, phát triển và thiết kế môi trường học mới. Học sinh sử dụng ICT để phân tích và đánh giá thông tin để khám phá các vấn đề vệ sinh nước sạch ở địa phương."
     },
@@ -51,7 +51,7 @@
     {
         "id": 8,
         "name": "Gắn việc học với người học",
-        "description": "ICT có thể sử dụng để hỗ trợ các chương trình cá nhân hóa người học thông qua việc sử dụng các hệ thống gia sư thông minh hay hệ thống quản lí việc học tập qua máy vi tính. Học sinh có thể được hỗ trợ các hoạt động phù hợp với nhu cầu của các em, đặc biệt với các em có nhu cầu đặc biệt",
+        "description": "ICT có thể sử dụng để hỗ trợ các chương trình cá nhân hóa người học thông qua việc sử dụng các hệ thống gia sư thông minh hay hệ thống quản lí việc học tập qua máy vi tính. Học sinh có thể được hỗ trợ các hoạt động phù hợp với nhu cầu của các em, đặc biệt với các em có nhu cầu đặc biệt.",
         "explanatory": "Theo dạy học truyền thống thì không thể cung cấp cho từng học sinh một kiểu học tập và các kinh nghiệm học tập cá nhân. Các tính chất của chương trình cá nhân hóa và các hoạt động tương tác giúp phát triển phần mềm dạy học cá nhân hóa người học. Các hệ thống gia sư thông minh hay hệ thống quản lí việc học tập qua máy vi tính sử dụng các thông tin của học sinh để cung cấp một cách thức dạy học phù hợp với từng học sinh. Mỗi học sinh có thể trải nghiệm khác nhau khi sử dụng các phần mềm hỗ trợ học tập. Thông tin ngược được cung cấp kịp thời hơn. Hệ thống quản lí việc học tập qua máy vi tính giúp giáo viên lập kế hoạch và giám sát việc học tập của từng học sinh. Các hệ thống gia sư thông minh hay hệ thống quản lí việc học tập qua máy vi tính ngày càng được sử dụng rộng rãi.",
         "example": "Học sinh sử dụng các hệ thống online để theo dõi tiến độ công việc. Học sinh sử dụng phầm mềm gia sư online. Học sinh không thể đến lớp sử dụng phần mềm gia sư và hệ thống quản lí học tập online."
     },

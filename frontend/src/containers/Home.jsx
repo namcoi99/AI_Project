@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
+import HomeJumbotron from '../components/HomeJumbotron';
 
 const Home = () => {
     const [index, setIndex] = useState(0);
@@ -63,6 +64,8 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            
+            {/* <HomeJumbotron/> */}
         </div>
     );
 };

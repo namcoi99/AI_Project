@@ -3,7 +3,7 @@ import criteriaData from '../../data/criteria.json'
 import ScoreRow from './ScoreRow';
 import axios from '../../axios';
 
-const ScoreTable = ({ expertNum, web, data, handleData }) => {
+const ScoreTable = ({ prevStep, nextStep, expertNum, web, data, handleData, setLoading }) => {
     const [score, setScore] = useState(new Array(data.selectedCriteria.length).fill(0))
     const [scores, setScores] = useState([])
     const [count, setCount] = useState(1)
@@ -26,7 +26,7 @@ const ScoreTable = ({ expertNum, web, data, handleData }) => {
         setScore(copyScore);
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
         const copyTotalScores = [...scores]
         copyTotalScores.push(score)
@@ -37,18 +37,24 @@ const ScoreTable = ({ expertNum, web, data, handleData }) => {
         if (count >= expertNum) {
             alert("Scoring completed!")
             // call api
-            axios.post('/get_score', {
-                expertsWeight: data.expertsWeight,
-                criteriaWeight: data.criteriaWeight,
-                userRatingScore: [...scores,score]
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            }).then((res) => {
-                console.log(res.data)
-                handleData(res.data)
-            })
+            try {
+                setLoading(true)
+                axios.post('/get_score', {
+                    expertsWeight: data.expertsWeight,
+                    criteriaWeight: data.criteriaWeight,
+                    userRatingScore: [...scores, score]
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }).then((res) => {
+                    console.log(res.data)
+                    handleData(res.data)
+                    nextStep()
+                })
+            } catch (e) {
+                console.log(e)
+            }
         } else {
             setCount(count + 1)
         }
@@ -72,11 +78,16 @@ const ScoreTable = ({ expertNum, web, data, handleData }) => {
                         </thead>
                         <tbody>
                             {scoreRow}
+                            <tr>
+                                <th></th>
+                                <td scope="col">
+                                    <button type="button" className="btn btn-outline-dark" onClick={event => generateRandArr(event, data.selectedCriteria.length, 100)}>Auto fill</button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
-
-                    <button type="submit" className="btn btn-dark">Submit</button>
-                    <button type="button" className="btn btn-outline-dark" onClick={event => generateRandArr(event, data.selectedCriteria.length, 100)}>Auto fill</button>
+                    <button type="button" onClick={prevStep} className="btn btn-outline-dark">Back</button>
+                    <button type="submit" className="btn btn-dark">Next</button>
                 </form>
             </div>
         </div>
