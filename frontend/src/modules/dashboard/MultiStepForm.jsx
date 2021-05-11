@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import LoadingSpinner from './LoadingSpinner';
+import LoadingSpinner from '../../layouts/LoadingSpinner';
 import FormTable from './RankingCriteria/FormTable';
 import Result from './Result';
 import ScoreTable from './ScoringCriteria/ScoreTable';
@@ -44,7 +44,6 @@ const MultiStepForm = () => {
         return (
             <LoadingSpinner />
         )
-
     switch (step) {
         case 1:
             return (

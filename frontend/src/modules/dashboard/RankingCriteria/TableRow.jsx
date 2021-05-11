@@ -1,10 +1,10 @@
 import React from 'react';
 
-function TableRow({ criterion, attributes, marks, handleMark }) {
+function TableRow({ criterion, evaluationItems, marks, handleMark }) {
     const RadioItems = ({ item }) => {
         let row = criterion.id - 1;
         let col = item.id - 1;
-        let index = row * attributes.length + col;
+        let index = row * evaluationItems.length + col;
         return (
             <td>
                 <div className="form-check">
@@ -30,7 +30,7 @@ function TableRow({ criterion, attributes, marks, handleMark }) {
             </td>
         )
     }
-    const radioItems = attributes.map(attr => (
+    const radioItems = evaluationItems.map(attr => (
         <RadioItems key={attr.id} item={attr} />
     ))
     return (

@@ -1,4 +1,4 @@
-POST http://localhost:5000/get_criteria
+POST http://sitesranking-backend.herokuapp.com/get_criteria
 Content-Type: application/json
 
 {
@@ -18,23 +18,15 @@ Content-Type: application/json
 }
 
 ###
-POST  http://localhost:5000/get_score
+POST  http://sitesranking-backend.herokuapp.com/get_score
 Content-Type: application/json
 
 {
-    "criteriaWeight": [
-    2.384322878026267,
-    2.4804351331952113,
-    2.4262633168162773
-    ],  
-    "expertsWeight": [
-        0.3333333333333333,
-        0.3333333333333333,
-        0.3333333333333333
-    ],
+    "criteriaWeight": 
+    [0.6445132902312491, 0.5720885236510244, 0.5989457300495843],  
+    "expertsWeight": [1],
     "userRatingScore": [
-        [31, 2, 3],
-        [23, 45, 56]
+        [83, 61, 98]
     ]
 
 }

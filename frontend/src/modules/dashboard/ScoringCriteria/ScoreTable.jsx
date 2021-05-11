@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import criteriaData from '../../data/criteria.json'
+import criteriaData from '../../../data/criteria.json'
 import ScoreRow from './ScoreRow';
-import axios from '../../axios';
+import axios from '../../../axios';
 
 const ScoreTable = ({ prevStep, nextStep, expertNum, web, data, handleData, setLoading }) => {
     const [score, setScore] = useState(new Array(data.selectedCriteria.length).fill(0))

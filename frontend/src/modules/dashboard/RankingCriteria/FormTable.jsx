@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import TableRow from './TableRow';
-import criteriaData from '../../data/criteria.json'
-import attributes from '../../data/attributes.json';
 import { Alert } from 'react-bootstrap';
-import axios from '../../axios';
+import axios from '../../../axios';
+import { useSelector } from 'react-redux';
 
 function FormTable({ nextStep, prevStep, expertNum, web, handleData, setLoading }) {
     const [marks, setMarks] = useState([])
@@ -13,6 +12,8 @@ function FormTable({ nextStep, prevStep, expertNum, web, handleData, setLoading 
     const [show, setShow] = useState(false)
     const [alertContent, setContent] = useState('')
     const [selectedCriteriaNum] = useState(3)
+    const criteria = useSelector(state => state.criteria)
+    const evaluationItems = useSelector(state => state.evaluationItems)
 
     const handleMark = (index, value) => {
         let copyMarks = [...marks];
@@ -50,14 +51,14 @@ function FormTable({ nextStep, prevStep, expertNum, web, handleData, setLoading 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (marks.includes(undefined) || marks.length !== criteriaData.length * attributes.length) {
+        if (marks.includes(undefined) || marks.length !== criteria.length * evaluationItems.length) {
             window.scrollTo(0, 0)
             setShow(true)
             setContent("You must fill all the mark below.")
             return;
         }
         const copyTotalMarks = [...totalMarks]
-        copyTotalMarks.push(listToMatrix(marks, criteriaData.length))
+        copyTotalMarks.push(listToMatrix(marks, criteria.length))
         setTotalMarks(copyTotalMarks)
         reset()
         alert(`Thanks expert ${name}`)
@@ -69,7 +70,7 @@ function FormTable({ nextStep, prevStep, expertNum, web, handleData, setLoading 
                 setLoading(true)
                 await axios.post('/get_criteria', {
                     selectedCriteriaNum: selectedCriteriaNum,
-                    expertsMark: [...totalMarks, listToMatrix(marks, criteriaData.length)]
+                    expertsMark: [...totalMarks, listToMatrix(marks, criteria.length)]
                 }, {
                     headers: {
                         'Content-Type': 'application/json',
@@ -87,12 +88,12 @@ function FormTable({ nextStep, prevStep, expertNum, web, handleData, setLoading 
         }
     }
 
-    const tableRow = criteriaData.map(criterion => {
+    const tableRow = criteria.map(criterion => {
         return (
-            <TableRow key={criterion.id} criterion={criterion} attributes={attributes} marks={marks} handleMark={handleMark} />
+            <TableRow key={criterion.id} criterion={criterion} evaluationItems={evaluationItems} marks={marks} handleMark={handleMark} />
         )
     })
-    const attrItems = attributes.map(attr => {
+    const attrItems = evaluationItems.map(attr => {
         return (
             <th scope="col" key={attr.name}>{attr.name}</th>
         )

@@ -7,8 +7,8 @@ const Navbar = () => {
         <header className="px-3 py-2 bg-dark text-white">
             <div className="container-xxl">
                 <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <NavLink to="/" exact={true} className="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-                        <AiOutlineHtml5 className="bi me-2" size={50} />
+                    <NavLink to="/" exact={true} className="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none" style={{ fontSize: "25px",fontFamily:"Lucida Handwriting" }}>
+                        Websites Evaluator
                     </NavLink>
                     <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                         <li>

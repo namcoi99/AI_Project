@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import './App.css';
-import Navbar from './components/Navbar';
+import Navbar from './layouts/Navbar';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-import Home from './containers/Home';
-import About from './containers/About';
-import DashBoard from './containers/DashBoard';
-import ScoreTable from './components/ScoringCriteria/ScoreTable';
+import Home from './modules/home/Home';
+import About from './modules/about/About';
+import DashBoard from './modules/dashboard/DashBoard';
 
 function App() {
   return (
@@ -24,9 +23,6 @@ function App() {
         </Route>
         <Route path="/dashboard">
           <DashBoard />
-        </Route>
-        <Route path="/scoreTable">
-          <ScoreTable />
         </Route>
       </Switch>
     </Router>
