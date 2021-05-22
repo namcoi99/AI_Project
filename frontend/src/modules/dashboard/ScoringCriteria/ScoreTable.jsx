@@ -80,7 +80,7 @@ const ScoreTable = ({ prevStep, nextStep, expertNum, web, data, handleData, setL
                             {scoreRow}
                             <tr>
                                 <th></th>
-                                <td scope="col">
+                                <td>
                                     <button type="button" className="btn btn-outline-dark" onClick={event => generateRandArr(event, data.selectedCriteria.length, 100)}>Auto fill</button>
                                 </td>
                             </tr>

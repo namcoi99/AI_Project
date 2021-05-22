@@ -35,7 +35,7 @@ function TableRow({ criterion, evaluationItems, marks, handleMark }) {
     ))
     return (
         <tr>
-            <td scope="row">
+            <td>
                 <div className="text-wrap" style={{ width: '20rem' }}>
                     {criterion.description}
                 </div>
