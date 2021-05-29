@@ -14,7 +14,7 @@ const MultiStepForm = () => {
         expertNum: 0,
         web: ''
     })
-    const [addItem] = useFbStorage();
+    const [items, addItem] = useFbStorage();
 
     const handleChange = (event) => {
         const value = event.target.value;
@@ -31,6 +31,7 @@ const MultiStepForm = () => {
 
     const handleRankedWeb = (data) => {
         setData2(data)
+        addItem({ name: state.web, score: data.score.toFixed(2), grade: data.rank })
         setLoading(false)
     }
 

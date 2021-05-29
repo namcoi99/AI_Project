@@ -30,7 +30,7 @@ export const getFirebaseItems = async () => {
 export const addFirebaseItem = async (item) => {
   try {
     const todoRef = db.collection("websites");
-    await todoRef.add(item);
+    await todoRef.add({ ...item, date: firebase.firestore.FieldValue.serverTimestamp() });
   } catch (err) {
     console.log(err);
   }

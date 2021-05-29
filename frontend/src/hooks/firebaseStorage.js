@@ -15,7 +15,7 @@ function useFbStorage() {
   };
 
   const addItem = async item => {
-    const newItem = { name: item.name, score: item.score, grade: item.grade, date: Date.now() };
+    const newItem = { name: item.name, score: item.score, grade: item.grade };
     await addFirebaseItem(newItem);
     setItems([...items, newItem]);
   };
