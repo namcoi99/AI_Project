@@ -8,6 +8,7 @@ import {
 import Home from './modules/home/Home';
 import About from './modules/about/About';
 import DashBoard from './modules/dashboard/DashBoard';
+import ScoreChart from './modules/dashboard/ScoreChart';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route path="/dashboard">
           <DashBoard />
+        </Route>
+        <Route path="/scorechart">
+          <ScoreChart />
         </Route>
       </Switch>
     </Router>

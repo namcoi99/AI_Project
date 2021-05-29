@@ -3,6 +3,7 @@ import LoadingSpinner from '../../layouts/LoadingSpinner';
 import FormTable from './RankingCriteria/FormTable';
 import Result from './Result';
 import ScoreTable from './ScoringCriteria/ScoreTable';
+import useFbStorage from '../../hooks/firebaseStorage';
 
 const MultiStepForm = () => {
     const [data1, setData1] = useState(undefined)
@@ -13,6 +14,7 @@ const MultiStepForm = () => {
         expertNum: 0,
         web: ''
     })
+    const [addItem] = useFbStorage();
 
     const handleChange = (event) => {
         const value = event.target.value;

@@ -1,10 +1,13 @@
 import firebase from 'firebase';
 import firebaseConfig from './firebaseConfig';
+require("firebase/firestore");
 
-  // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 firebase.analytics();
-  
+
 const db = firebase.firestore();
 // export const auth = firebase.auth();
 export default firebase;
