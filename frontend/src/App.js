@@ -1,5 +1,5 @@
 import './App.css';
-import Navbar from './layouts/Navbar';
+import Navbar from './layouts/NavigationBar';
 import {
   BrowserRouter as Router,
   Switch,
