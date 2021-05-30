@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+}
+
+#home-content .content-section {
+    padding: 100px 16px 100px;
+}
+
+#home-content .algorithm-section {
+    background-color: #FFE4C4;
+}
+
+#home-content .section-heading {
+    font-size: 40px;
+    font-weight: 500;
+    letter-spacing: 4px;
+}
+
+#home-content .content-text {
+    padding-top: 25px;
+    line-height: 1.6;
+
+}
+
+#home-content .intro-items {
+    display: flex;
+}
+
+#home-content .algorith-steps {
+    display:flex;
+}
+
+.dashboard {
+}
+
+.sidebar-active {
+    background-color: #000 !important;
+    color: #fff !important;
+    opacity: 1 !important;
+}
+
+.dashboard-sidebar {
+    background-color: #f8f9fa;
+    /* margin: 16px; */
+    min-width: 250px;
+    border-right: 1px solid #000;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+}
+
+.dashboard-sidebar .sidebar-btn {
+    display: block;
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
+    padding: 12px 48px;
+    margin: 0 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    min-width: 120px;
+    font-weight: 600;
+}
+
+.dashboard-sidebar .sidebar-btn:hover {
+    opacity: 0.5;
+    background-color: #000;
+    color: #fff;
+}
+
+.dashboard-content {
+    margin-left: 250px;
+}
+
+.dashboard-content .content-item {
+    padding: 64px 25px;
+}
+
+@media (max-width: 575.98px) {
+    #home-content .algorithm-steps {
+        text-align: center;
+    }
+
+    #home-content .algorithm-steps p{
+        text-align: justify;
+    }
+}

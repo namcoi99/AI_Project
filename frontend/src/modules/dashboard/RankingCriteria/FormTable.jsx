@@ -127,8 +127,8 @@ function FormTable({ nextStep, prevStep, expertNum, web, handleData, setLoading 
                         <input className="form-control" type="text" id="expertName" placeholder="Enter your name..." value={name} required onChange={(event) => setName(event.target.value)} />
                     </div>
                 </div>
-                <button type="button" className="btn btn-outline-dark" onClick={prevStep}>Back</button>
-                <button type="submit" className="btn btn-dark">Next</button>
+                <button type="button" className="btn btn-outline-dark mt-2" onClick={prevStep}>Back</button>
+                <button type="submit" className="btn btn-dark mt-2 ml-2">Next</button>
             </form>
         </div>
 

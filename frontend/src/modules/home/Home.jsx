@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardDeck, Carousel } from 'react-bootstrap';
 import { GrSystem, GrGroup, GrSettingsOption } from "react-icons/gr";
-import "../../css/Home.css";
 
 const Home = () => {
     const [index, setIndex] = useState(0);
@@ -107,7 +106,9 @@ const Home = () => {
                         <CardDeck>
                             <Card border="dark">
                                 <span className="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger" style={{ fontSize: "40px", fontFamily: "Garamond" }}>#1</span>
-                                <Card.Img variant="top" src="https://s3.amazonaws.com/coursera/media/Grid_Coursera_Partners_updated.png" style={{ height: "15rem" }} />
+                                <a href="https://coursera.org" target="_blank" rel="noreferrer">
+                                    <Card.Img variant="top" src="https://s3.amazonaws.com/coursera/media/Grid_Coursera_Partners_updated.png" style={{ height: "15rem" }} />
+                                </a>
                                 <Card.Body>
                                     <Card.Title><a href="https://coursera.org" target="_blank" rel="noreferrer">Coursera.org</a></Card.Title>
                                     <Card.Text>
@@ -120,7 +121,9 @@ const Home = () => {
                             </Card>
                             <Card border="dark">
                                 <span className="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-primary" style={{ fontSize: "30px", fontFamily: "Garamond" }}>#2</span>
-                                <Card.Img variant="top" src="https://www.classcentral.com/report/wp-content/uploads/2021/01/udemy-top-courses.png" style={{ height: "15rem" }} />
+                                <a href="https://udemy.com" target="_blank" rel="noreferrer">
+                                    <Card.Img variant="top" src="https://www.classcentral.com/report/wp-content/uploads/2021/01/udemy-top-courses.png" style={{ height: "15rem" }} />
+                                </a>
                                 <Card.Body>
                                     <Card.Title><a href="https://udemy.com" target="_blank" rel="noreferrer">Udemy.com</a></Card.Title>
                                     <Card.Text>
@@ -133,7 +136,9 @@ const Home = () => {
                             </Card>
                             <Card border="dark">
                                 <span className="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-success" style={{ fontSize: "30px", fontFamily: "Garamond" }}>#3</span>
-                                <Card.Img variant="top" src="https://edx.edu.vn/wp-content/uploads/2020/02/Muc-tieu-giao-duc-cua-edX-1.jpg" style={{ height: "15rem" }} />
+                                <a href="https://edx.org" target="_blank" rel="noreferrer">
+                                    <Card.Img variant="top" src="https://edx.edu.vn/wp-content/uploads/2020/02/Muc-tieu-giao-duc-cua-edX-1.jpg" style={{ height: "15rem" }} />
+                                </a>
                                 <Card.Body>
                                     <Card.Title><a href="https://edx.org" target="_blank" rel="noreferrer">Edx.org</a></Card.Title>
                                     <Card.Text>

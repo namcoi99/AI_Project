@@ -87,7 +87,7 @@ const ScoreTable = ({ prevStep, nextStep, expertNum, web, data, handleData, setL
                         </tbody>
                     </table>
                     <button type="button" onClick={prevStep} className="btn btn-outline-dark">Back</button>
-                    <button type="submit" className="btn btn-dark">Next</button>
+                    <button type="submit" className="btn btn-dark ml-2">Next</button>
                 </form>
             </div>
         </div>

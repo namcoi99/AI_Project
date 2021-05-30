@@ -9,6 +9,7 @@ import Home from './modules/home/Home';
 import About from './modules/about/About';
 import DashBoard from './modules/dashboard/DashBoard';
 import ScoreChart from './modules/dashboard/ScoreChart';
+import "./css/Style.css";
 
 function App() {
   return (

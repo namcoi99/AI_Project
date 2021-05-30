@@ -14,7 +14,7 @@ const MultiStepForm = () => {
         expertNum: 0,
         web: ''
     })
-    const [items, addItem] = useFbStorage();
+    const [items, addItem] = useFbStorage()
 
     const handleChange = (event) => {
         const value = event.target.value;
@@ -55,7 +55,7 @@ const MultiStepForm = () => {
                     <input type="number" id="expertNum" className="form-control" name="expertNum" value={state.expertNum} required min="1" max="10" onChange={handleChange} />
                     <label htmlFor="website" className="form-label">Enter website</label>
                     <input type="text" id="website" name="web" className="form-control" required placeholder="ex: hocmai.vn" value={state.web} onChange={handleChange} />
-                    <button className="btn btn-dark" type="submit">Next</button>
+                    <button className="btn btn-dark mt-2" type="submit">Next</button>
                 </form>
             )
         case 2:
