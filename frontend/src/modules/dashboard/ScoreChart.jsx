@@ -21,6 +21,9 @@ const ScoreChart = () => {
         if (webData.length === 0) {
             return 'No Information';
         }
+        webData.sort(function (a, b) {
+            return a.date.seconds - b.date.seconds;
+        });
         return (
             <Bar
                 data={{
